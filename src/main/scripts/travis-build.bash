@@ -4,7 +4,7 @@
 set -o pipefail
 
 declare Pkg=travis-build-mvn
-declare Version=0.1.0
+declare Version=0.2.0
 
 function msg() {
     echo "$Pkg: $*"
@@ -19,7 +19,7 @@ function main() {
 
     local mvn="mvn --settings .settings.xml -B -V -U"
     local project_version
-    if [[ $TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    if [[ $TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+(-(m|rc)\.[0-9]+)?$ ]]; then
         if ! $mvn build-helper:parse-version versions:set -DnewVersion="$TRAVIS_TAG" versions:commit; then
             err "failed to set project version"
             return 1
@@ -31,14 +31,14 @@ function main() {
             err "failed to set timestamped project version"
             return 1
         fi
-        project_version=$(mvn help:evaluate -Dexpression=project.version | grep -v "^\[")
+        project_version=$(mvn help:evaluate -Dexpression=project.version | grep -E '^[0-9]+\.[0-9]+\.[0-9]-[0-9]{14}$' | tail -n 1)
         if [[ $? != 0 || ! $project_version ]]; then
             err "failed to parse project version"
             return 1
         fi
     fi
 
-    if ! $mvn test $mvn_deploy_args; then
+    if ! $mvn test; then
         err "maven test failed"
         return 1
     fi
@@ -48,13 +48,8 @@ function main() {
         return 0
     fi
 
-    if [[ $TRAVIS_BRANCH == master || $TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    if [[ $TRAVIS_BRANCH == master || $TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+(-(m|rc)\.[0-9]+)?$ ]]; then
         msg "version is $project_version"
-        local mvn_deploy_args
-        if [[ $TRAVIS_BRANCH == master ]]; then
-            mvn_deploy_args=-DaltDeploymentRepository=public-atomist-dev::default::https://atomist.jfrog.io/atomist/libs-dev-local
-        fi
-
         if ! git config --global user.email "travis-ci@atomist.com"; then
             err "failed to set git user email"
             return 1
@@ -68,7 +63,11 @@ function main() {
             err "failed to create git tag: $git_tag"
             return 1
         fi
-        if ! git push --quiet --tags "https://$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG" > /dev/null 2>&1; then
+        local remote=origin
+        if [[ $GITHUB_TOKEN ]]; then
+            remote=https://$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG
+        fi
+        if ! git push --quiet --tags "$remote" > /dev/null 2>&1; then
             err "failed to push git tags"
             return 1
         fi
