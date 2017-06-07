@@ -1,29 +1,24 @@
 language: java
-sudo: true
 install: true
-script: bash src/main/scripts/travis-build.bash
+script: bash src/main/scripts/travis-build.sh
 jdk:
 - oraclejdk8
-addons:
-  apt:
-    packages:
-    - oracle-java8-installer
-branches:
-  except:
-  - /\+travis\d+$/
 env:
   global:
-  - secure: PBTy2M82sWMhtQe7qWT5cJ6GHtmknq+WEvHu1iDf2DImaZ/61hYZJd3HJq3sx50sRjq/PoxHzKtHvmm698phJqkyZqMsXHthHof42lxXsd4lV3RK9kcZpN6xJqPWrs/ZGE6Msscm7vs1XfjvbDxrjDEg3Z6ClGmZZZ5mKaCqY0pYKllrVkQI72ZdPz67LhU3aEKLn0KLFUFPMQYdm18lkw6ZCh6FSQO9fQ8GhyI6ClNh0Ibq8/KfCB6s/LIwPi4N67ZfjL/YMni67/l7Lv3r91in3nJLlKfBnDmwOXPg3gs8N5BMqX5kg9ULUshLVxOA4fW6WJkrXCmy+oLKdbDicQ4nM8j2Wce+IC7tPmX0lemGNefneX7BeiH+sz6mgES6pH6FwXmhuA+/0o3pohPyaAmzerjnIaq2ai2r4rDqtc7LjsQNl2htK8LxqLrOtUv7OC2686EKBk3XuVtuTmGvG8GXjZyDFHkds5jUXxpJDEWD+w2lN1XuaHvNMjg+d02NL8uFWok5JlgwT+3wlajaf9GOSCVnFVtFXKrqjE4GqIbGIgGHrVYx5F2NidSXRvnKTM30tzV74X1fjnOxuQmRz6EYzwaRgIn4Ci92IyyFFRgIhmcH5JAc2r4sgmHfrf7Y9MqtMsu/knn1Z/Z5IO04jGtkA7o+aum/rAHiaceCYhQ=
-  - secure: W0uk8nZZck/npXgjAy5rMVsvo+l64EJ/C+ES6jxec8ZfKGnslLjRUT2OQUoBzRq0j1VYwyyHAz90mF18l1gAEVNs9sfv/++FYc1N8iK4ax6e72aCOA8Fv8fJfFSnpzl6WIhpT81NS6oREPA89ioiVV/pK+ewvZyThcfABAavz+aYAN8vZQP/+3caWuAAICeUNF39iqYJsasNK2kN2TfXxMLUNSrcUZIbMvevD007SYV39J1otmHhLrJkXRkX0cLgieElfCK1GbrOG6Q3JImMkZh2hPNiJ6UhLTA6KubhgOKhj1ph36UDm+b0K+39WXKtTvLmSD5XwIVtH77RIUA5ifdQBSXNXbww0CtWNienW4vTpN1GYERA0pYuzDloXyl8LflY+/f4HTT7SXqcVKHLklOVAavEPyLLhtQAbx9mQiV4KlkZFtDrs1dCuADH4oGK+oxE0EUFSOhlWw9F6EDgGF4oxxwehDzdHGMiI3oaCSaJDogJv93m9nvUWphvXkGV7F6Y9+2GUOi8vEZ2K7t32wc4/JxY71Ci1pEzr9QDAJ3g6tyad0lUqCRlbd6/7l20lCa9BWAithmxWy5hXE61ciumcAOxTPEXKljUhQnTFMqsbzFrl4u+xqFXxBVb5EWYgFl3K74istz+G2CueHbh2nkggZG9CITC+27849DIkxI=
-  - secure: 0GSkMgCGbEpofXTMJMaYDMA6SY+PlFcEtCuWYMP2J33OTm19oN62Hh1i29nHMIqyOMQ8C0NO7jgX4rurgFTiLaCfwV4XxyCRrEH6QyyXbmO6U1/5Jz5bjaYoIey9U7GIbfoLfh/ilEsP+yD8J2WvS3MB/0k3ZLSbWxPTQDifhcYdqx0/kt2lThJNC+/biraq4UIQu4Wvr572GD6NRq4PVa8v+PGH1cbFEJnBAXz7t2Ztc+gjyZnE1Sd3pvaFCdtZxLfs1KhqDDmEmzR+QeDelPyhis+rPxqswYSrcV58GjjIicuvw0Ws1i817PruYDuCy/LQyS2BbD5KHI6X/6/V1iCt4fPyl7RTdTnLOKQUcgmU6hol/iSixuIRyATYz8/zdXaPCDjpdpbRNYBGfE6iCQTEoyXB3GcwYtHmYgSroPEAlwrOWrkZCEOmAjGHFEWNQzejsBr2e72rQZAOFaTNGLf1cxCVFN9hgTrnIbNzcHAwiUxh45KLPEB5j62VLdA/vqLkXZt4p6SehhkaUa88hg7MO3OrJ2UkB9CUzDmiOY8rC+O2RQCnpGpBYkL+psc6/Xg2SBd3kDrPjoFFYNG1BOktnzYRuDqoFstjkleYOqEe6ni5XwV5Ej0xLml0sjX8lWqQAxvAoNM/qlEN494HjQjveS7WeJc0bdr2KW3GlCA=
+  - secure: QNDTupThv37NjYDRcz3+dmO33a3e6c4rWIKsTdStf6DfgxxPQ+CfEW9OraiRwECIE32SjjZ00U+xixGCKl+Jn0t7HVgQiXNPgmbWsb+ywCNVzk0XhX+4NqT7u5BeSGPB+fctAvrFQGxVKjSSI4E7Zj6AdOucHPfK1Xz10IvDg41BG/Jwxbg0EioIdNj6TPEVOibBDWg5EGmCZ9o0n3rPsRjH+b7TDr8Wc06OyXGOT9leiESNXbK3pi0GNdtHqwd9O6D5G/PFyTB23XRLrS2K4GhqXy0LeGBO9ysrbgZeLekMrQJmZMFBlOSh3qFWSv/ybQyeIyYV/o/Z4Y8/Y2P5tL8fI2B0cFFvggTmCTRmNu4K998p8M/T+nLQMCJyiLBIO8QL8k/zmqJhmmeZJeNHyYuE8Xn1ZEoajMQ30m/rMHbTLr09LJs9W6lk8vqjUtrVsK+lyzmc/AaujGqU5ATXFDNU/s9+hIY93Pn51ynjCQX0euowFnWi4Y5fHgRgSFnXWXYss3TVPh6sPKNnolXOKPta4FYhuq07CRGyziGAHIbf2Ppr2gFH4XxVKDeet9nwbZclgfl5Vty7QgAIkl8DFjMU9VtNE2WPJZBUpn0SVp/41IMR+20Xq+02r6j71J0JdEeSfWfsXF04lLcDcmh9pc9VV1v6YccQfSrz/ElvTQY=
 notifications:
   email: false
   webhooks:
     on_success: always
     on_failure: always
     on_start: always
+    on_error: always
+    on_cancel: always
     urls:
     - https://webhook.atomist.com/travis
 cache:
   directories:
   - $HOME/.m2
+branches:
+  except:
+  - /^v?\d+\.\d+\.\d+/
