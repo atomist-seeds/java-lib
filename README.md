@@ -1,7 +1,6 @@
 # java-lib-seed
 
 [![Build Status](https://travis-ci.org/atomist-seeds/java-lib-seed.svg?branch=master)](https://travis-ci.org/atomist-seeds/java-lib-seed)
-[![Slack Status](https://join.atomist.com/badge.svg)](https://join.atomist.com)
 
 A Java library for creating other Java libraries.
 
