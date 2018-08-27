@@ -1,7 +1,5 @@
 # java-lib-seed
 
-[![Build Status](https://travis-ci.org/atomist-seeds/java-lib-seed.svg?branch=master)](https://travis-ci.org/atomist-seeds/java-lib-seed)
-
 A Java library for creating other Java libraries.
 
 This project is an example progenitor project that can be used to
@@ -34,5 +32,5 @@ $ mvn test
 Created by [Atomist][atomist].
 Need Help?  [Join our Slack team][slack].
 
-[atomist]: https://www.atomist.com/
-[slack]: https://join.atomist.com/
+[atomist]: https://www.atomist.com/ (Atomist - How Teams Deliver Software)
+[slack]: https://join.atomist.com/ (Atomist Community Slack Workspace)
