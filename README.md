@@ -1,4 +1,4 @@
-# java-lib-seed
+# java-lib
 
 A Java library for creating other Java libraries.
 
